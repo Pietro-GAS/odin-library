@@ -34,3 +34,45 @@
     align-self: center;
     justify-self: end;
 }
+
+#new-book p {
+    display: grid;
+    grid-template: 1fr / 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+}
+
+#new-book .label {
+    grid-column: 1 / 2;
+}
+
+#new-book .input {
+    grid-column: 2 / -1;
+}
+
+.buttons {
+    display:flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+label#book-read-yes {
+    grid-column: 2 / 3;
+    justify-self: end;
+}
+
+input#book-read-yes {
+    grid-column: 3 / 4;
+}
+
+label#book-read-no {
+    grid-column: 4 / 5;
+    justify-self: end;
+}
+
+input#book-read-no {
+    grid-column: 5 / 6;
+}
+
+#button-save,
+#button-cancel {
+    width: 60px;
+}

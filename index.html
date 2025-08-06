@@ -9,6 +9,33 @@
 <body>
     <div class="commands"></div>
     <div class="container"></div>
+    <dialog id="new-book">
+        <form id="new-book-form" method="dialog">
+            <p>
+                <label class="label" for="book-title">Title:</label>
+                <input class="input" id="book-title" name="book-title" type="text">
+            </p>
+            <p>
+                <label class="label" for="book-author">Author:</label>
+                <input class="input" id="book-author" name="book-author" type="text">
+            </p>
+            <p>
+                <label class="label" for="book-pages">Pages:</label>
+                <input class="input" id="book-pages" name="book-pages" type="text">
+            </p>
+            <p>
+                <label class="label">Read:</label>
+                <label for="book-read-yes" id="book-read-yes">Yes</label>
+                <input id="book-read-yes" name="book-read" value="yes" type="radio">
+                <label for="book-read-no" id="book-read-no">No</label>
+                <input id="book-read-no" name="book-read" value="no" type="radio">
+            </p>
+            <div class="buttons">
+                <button id="button-cancel" name="button-cancel" type="reset">Cancel</button>
+                <button id="button-save" name="button-save" type="submit">Save</button>
+            </div>
+        </form>
+    </dialog>
     <script src="./scripts/script.js" defer></script>
 </body>
 </html>

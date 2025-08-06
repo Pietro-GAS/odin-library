@@ -1,6 +1,9 @@
 const body = document.querySelector("body");
 const commands = document.querySelector(".commands")
 const container = document.querySelector(".container");
+const dialog = document.getElementById("new-book");
+dialog.returnValue = "newBook";
+const form = document.getElementById("new-book-form");
 
 const myLibrary = [];
 
@@ -16,6 +19,8 @@ const btnClear = document.createElement("button");
 btnClear.setAttribute("class", "btn-clear");
 btnClear.textContent = "Clear";
 
+const btnCancel = document.getElementById("button-cancel");
+const btnSave = document.getElementById("button-save");
 
 commands.appendChild(btnNew);
 commands.appendChild(btnDisplay);
@@ -28,6 +33,17 @@ btnDisplay.addEventListener("click", () => {
 btnClear.addEventListener("click", () => {
     clear();
 })
+
+btnNew.addEventListener("click", () => {
+    newBook();
+})
+
+btnCancel.addEventListener("click", () => {
+    dialog.close("bookNotAdded");
+})
+
+btnSave.addEventListener("click", mySave, false);
+
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -108,4 +124,28 @@ function clear() {
 
 function checkId(object, id) {
     return object.id == id;
+}
+
+function newBook() {
+    dialog.showModal();
+}
+
+function mySave(event) {
+    const text = "Submit default function disabled.";
+    console.log(text);
+    
+    const formData = new FormData(form);
+    const formDataClean = Object.fromEntries(formData);
+    
+    const title = formDataClean["book-title"];
+    const author = formDataClean["book-author"];
+    const pages = formDataClean["book-pages"];
+    const read = formDataClean["book-read"];
+
+    addBookToLibrary(title, author, pages, read);
+    displayBooks();
+    form.reset();
+    dialog.close("newBookAdded");
+
+    event.preventDefault();
 }
