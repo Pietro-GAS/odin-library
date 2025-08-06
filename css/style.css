@@ -1,0 +1,36 @@
+.commands {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 15px;
+}
+
+.container {
+    display: flex;
+    /*grid-template: repeat(auto-fit, 150px) / repeat(auto-fit, 250px);*/
+    gap:10px;
+}
+
+.card {
+    background-color: bisque;
+    border: 1px solid black;
+    width: 250px;
+    height: 150px;
+    display: grid;
+    grid-template: repeat(5, 1fr) / 1fr 2fr;
+    gap: 2px;
+    padding: 5px;
+}
+
+.card #title {
+    grid-area: 1 / 1 / span 1 / span 2;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card .button-remove {
+    grid-area: 5 / 2 / span 1 / span 1;
+    width: 80px;
+    align-self: center;
+    justify-self: end;
+}
