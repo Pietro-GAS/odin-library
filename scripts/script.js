@@ -56,6 +56,15 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.changeStatus = function() {
+    if (this.read == "yes") {
+        this.read = "no";
+    } else if (this.read == "no") {
+        this.read = "yes";
+    }
+    displayBooks();
+};
+
 function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
@@ -89,11 +98,29 @@ function createCard(book) {
     card.appendChild(cellReadValue);
     cellReadValue.textContent = book.read;
 
+    const buttonsDiv = document.createElement("div");
+    buttonsDiv.setAttribute("class", "buttons");
+    card.appendChild(buttonsDiv);
+
+    const btnUpdate = document.createElement("button");
+    btnUpdate.setAttribute("class", "button-update");
+    btnUpdate.setAttribute("id", book.id);
+    btnUpdate.textContent = "Change Status";
+    buttonsDiv.appendChild(btnUpdate); 
+    
     const btnRemove = document.createElement("button");
     btnRemove.setAttribute("class", "button-remove");
     btnRemove.setAttribute("id", book.id);
     btnRemove.textContent = "Remove";
-    card.appendChild(btnRemove);
+    buttonsDiv.appendChild(btnRemove);
+
+    btnUpdate.addEventListener("click", () => {
+        const id = btnRemove.getAttribute("id");
+        const index = myLibrary.findIndex((object) => checkId(object, id));
+        const book = myLibrary[index];
+
+        book.changeStatus();
+    })
 
     btnRemove.addEventListener("click", () => {
         const id = btnRemove.getAttribute("id");
@@ -131,9 +158,6 @@ function newBook() {
 }
 
 function mySave(event) {
-    const text = "Submit default function disabled.";
-    console.log(text);
-    
     const formData = new FormData(form);
     const formDataClean = Object.fromEntries(formData);
     

@@ -28,11 +28,10 @@
     text-align: center;
 }
 
-.card .button-remove {
+.card .buttons {
     grid-area: 5 / 2 / span 1 / span 1;
-    width: 80px;
-    align-self: center;
-    justify-self: end;
+    display: flex;
+    gap: 2px;
 }
 
 #new-book p {
@@ -48,7 +47,7 @@
     grid-column: 2 / -1;
 }
 
-.buttons {
+#new-book .buttons {
     display:flex;
     justify-content: flex-end;
     gap: 5px;
