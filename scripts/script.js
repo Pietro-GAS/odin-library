@@ -45,25 +45,44 @@ btnCancel.addEventListener("click", () => {
 btnSave.addEventListener("click", mySave, false);
 
 
-function Book(title, author, pages, read) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor.")
+//function Book(title, author, pages, read) {
+//    if (!new.target) {
+//        throw Error("You must use the 'new' operator to call the constructor.")
+//    }
+//    this.id = `id${crypto.randomUUID()}`;
+//    this.author = author;
+//    this.title = title;
+//    this.pages = pages;
+//    this.read = read;
+//}
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.id = `id${crypto.randomUUID()}`;
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.read = read;
     }
-    this.id = `id${crypto.randomUUID()}`;
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read;
+
+    changeStatus() {
+        if (this.read == "yes") {
+            this.read = "no";
+        } else if (this.read == "no") {
+            this.read = "yes";
+        }
+        displayBooks();
+    }
 }
 
-Book.prototype.changeStatus = function() {
-    if (this.read == "yes") {
-        this.read = "no";
-    } else if (this.read == "no") {
-        this.read = "yes";
-    }
-    displayBooks();
-};
+//Book.prototype.changeStatus = function() {
+//    if (this.read == "yes") {
+//        this.read = "no";
+//    } else if (this.read == "no") {
+//        this.read = "yes";
+//    }
+//    displayBooks();
+//};
 
 function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
@@ -115,7 +134,7 @@ function createCard(book) {
     buttonsDiv.appendChild(btnRemove);
 
     btnUpdate.addEventListener("click", () => {
-        const id = btnRemove.getAttribute("id");
+        const id = btnUpdate.getAttribute("id");
         const index = myLibrary.findIndex((object) => checkId(object, id));
         const book = myLibrary[index];
 
